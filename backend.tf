@@ -9,7 +9,7 @@ terraform {
     cloud {
           organization = "mcitccrf2301"
         workspaces {
-          name = "hospital-queue"
+          name = "Hospital-queue"
       }
     }
 }
