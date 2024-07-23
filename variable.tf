@@ -12,7 +12,7 @@ variable "aws_region" {
 }
 
 variable "github_token" {
-  description = "GitHub OAuth token"
-  type        = string
-  sensitive   = true
+    description = "GitHub OAuth token"
+    type        = string
+    sensitive   = true
 }
