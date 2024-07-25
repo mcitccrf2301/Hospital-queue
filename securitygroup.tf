@@ -1,4 +1,4 @@
-/// This was added July 24 2024 and may need some updates
+////// This was added July 24 2024 - may need some updates
 
 #Create Security Group -SSH Traffic
 resource "aws_security_group" "sg-ssh" {
