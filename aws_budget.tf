@@ -19,8 +19,8 @@ resource "aws_budgets_budget" "capstone_budget" {
     use_amortized     = true
   }
 
-  time_period_start = "2024-07-27"
-  time_period_end   = "2025-08-31"
+  time_period_start = "2024-07-27_00:00"
+  time_period_end   = "2025-08-31_00:00"
 
   notification {
     comparison_operator = "GREATER_THAN"
