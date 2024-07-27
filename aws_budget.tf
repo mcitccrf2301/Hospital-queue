@@ -6,17 +6,17 @@ resource "aws_budgets_budget" "capstone_budget" {
   time_unit         = "MONTHLY"
 
   cost_types {
-    include_tax       = true
-    include_subscription = true
-    use_blended        = true
-    include_refund    = false
-    include_credit    = false
-    include_upfront   = true
-    include_recurring = true
+    include_tax             = true
+    include_subscription    = true
+    use_blended             = true
+    include_refund          = false
+    include_credit          = false
+    include_upfront         = true
+    include_recurring       = true
     include_other_subscription = true
-    include_support   = true
-    include_discount  = true
-    use_amortized     = true
+    include_support         = true
+    include_discount        = false  # Must be false when use_blended is true
+    use_amortized           = false  # Must be false when use_blended is true
   }
 
   time_period_start = "2024-07-27_00:00"
