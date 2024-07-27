@@ -1,8 +1,8 @@
 ////// This was added July 24 2024 - may need some updates
 
 #Create Security Group -SSH Traffic
-resource "aws_security_group" "sg-ssh" {
-    name="sg-ssh"
+resource "aws_security_group" "sg_ssh" {
+    name="sg_ssh"
     description = "Dev VPC SSH"
     ingress{
         description="Allow port 22"
@@ -19,13 +19,13 @@ resource "aws_security_group" "sg-ssh" {
         cidr_blocks=["0.0.0.0/0"]
     }
     tags = {
-      Name="sg-ssh"
+      Name="sg_ssh"
     }
 }
 
 #Create Security Group - HTTP Traffic
-resource "aws_security_group" "sg-web" {
-    name="sg-web"
+resource "aws_security_group" "sg_web" {
+    name="sg_web"
     description = "Dev VPC web"
     ingress{
         description="Allow port 80"
@@ -56,6 +56,6 @@ resource "aws_security_group" "sg-web" {
         cidr_blocks=["0.0.0.0/0"]
     }
     tags = {
-      Name="sg-web"
+      Name="sg_web"
     }
 }
