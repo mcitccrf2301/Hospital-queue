@@ -4,8 +4,7 @@ resource "aws_budgets_budget" "capstone_budget" {
   limit_amount      = "50"
   limit_unit        = "CAD"
   time_unit         = "MONTHLY"
-  cost_filters      = {}
- 
+
   cost_types {
     include_tax       = true
     include_subscription = true
@@ -19,31 +18,23 @@ resource "aws_budgets_budget" "capstone_budget" {
     include_discount  = true
     use_amortized     = true
   }
- 
-  time_period_start = "2024-07-27_00:00"
-  time_period_end   = "2025-08-31_00:00"
- 
+
+  time_period_start = "2024-07-27T00:00:00Z"
+  time_period_end   = "2025-08-31T00:00:00Z"
+
   notification {
     comparison_operator = "GREATER_THAN"
-    threshold           = "50"
+    threshold           = 50
     threshold_type      = "PERCENTAGE"
     notification_type   = "ACTUAL"
- 
-    subscriber {
-      address          = "mcitccrf2301@gmail.com"
-      subscription_type = "EMAIL"
-    }
+    subscriber_email_addresses = ["mcitccrf2301@gmail.com"]
   }
- 
+
   notification {
     comparison_operator = "GREATER_THAN"
-    threshold           = "25"
+    threshold           = 25
     threshold_type      = "PERCENTAGE"
     notification_type   = "ACTUAL"
- 
-    subscriber {
-      address          = "mcitccrf2301@gmail.com"
-      subscription_type = "EMAIL"
-    }
+    subscriber_email_addresses = ["mcitccrf2301@gmail.com"]
   }
 }
