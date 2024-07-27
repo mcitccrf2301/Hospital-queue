@@ -2,7 +2,7 @@ resource "aws_budgets_budget" "capstone_budget" {
   name              = "CapstoneBudget"
   budget_type       = "COST"
   limit_amount      = "50"
-  limit_unit        = "CAD"
+  limit_unit        = "USD"
   time_unit         = "MONTHLY"
 
   cost_types {
