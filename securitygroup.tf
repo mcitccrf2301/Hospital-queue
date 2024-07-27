@@ -45,7 +45,7 @@ resource "aws_security_group" "sg_web" {
         description="Allow port 3389"
         from_port = 3389
         to_port = 3389
-        protocol = "rdp"
+        protocol = "tcp"
         cidr_blocks=["0.0.0.0/0"]
     }
     egress{
