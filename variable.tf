@@ -17,9 +17,6 @@ variable "github_token" {
     sensitive   = true
 }
 
-
-////// This was added July 24 2024 - may need some updates
-
 # VPC Input Variables
 # VPC Name
 variable "vpc_name" {
