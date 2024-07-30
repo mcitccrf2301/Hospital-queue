@@ -26,6 +26,12 @@ variable "ami_for_compute" {
   default = "ami-0427090fd1714168b"
 }
 
+variable "compute_type" {
+  description = "compute type"
+  type = string 
+  default = "t2.micro"
+}
+
 variable "github_token" {
     description = "GitHub OAuth token"
     type        = string
