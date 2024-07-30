@@ -1,5 +1,6 @@
 #Create Security Group -SSH Traffic
 resource "aws_security_group" "sg_ssh" {
+    vpc_id = module.vpc.vpc_id
     name="sg_ssh"
     description = "Dev VPC SSH"
     ingress{
