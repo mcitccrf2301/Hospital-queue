@@ -16,3 +16,4 @@ resource "aws_instance" "hospital_queue" {
   tags = {
     Name = "HospitalQueueSystem"
   }
+}
