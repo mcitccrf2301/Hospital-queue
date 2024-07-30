@@ -24,6 +24,7 @@ resource "aws_security_group" "sg_ssh" {
 
 #Create Security Group - HTTP Traffic
 resource "aws_security_group" "sg_web" {
+    vpc_id = module.vpc.vpc_id
     name="sg_web"
     description = "Dev VPC web"
     ingress{
