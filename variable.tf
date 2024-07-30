@@ -23,7 +23,7 @@ variable "aws_region" {
 variable "ami_for_compute" {
   description = "ami id"
   type = string 
-  default = "ami-id"
+  default = "ami-0427090fd1714168b"
 }
 
 variable "github_token" {
