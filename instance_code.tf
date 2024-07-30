@@ -1,5 +1,5 @@
 resource "aws_instance" "hospital_queue" {
-  ami           = "ami-0427090fd1714168b"
+  ami           = var.ami_for_compute
   instance_type = "t2.micro"
   key_name      = "hospital_key_pair"
 
