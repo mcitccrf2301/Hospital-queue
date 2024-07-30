@@ -20,6 +20,12 @@ variable "aws_region" {
     default ="us-east-1"
 }
 
+variable "ami_for_compute" {
+  description = "ami id"
+  type = string 
+  default = "ami-id"
+}
+
 variable "github_token" {
     description = "GitHub OAuth token"
     type        = string
