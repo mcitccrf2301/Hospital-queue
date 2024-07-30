@@ -1,6 +1,6 @@
 resource "aws_instance" "hospital_queue" {
   ami           = var.ami_for_compute
-  instance_type = "t2.micro"
+  instance_type = var.compute_type
   key_name      = "hospital_key_pair"
 
   subnet_id = module.vpc.public_subnets[0]
