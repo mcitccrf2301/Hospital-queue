@@ -35,7 +35,7 @@ resource "aws_instance" "hospital_queue" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = file("${path.module}/path_to_your_private_key.pem")
+      private_key = "hospital_key_pair_ssh"
       host        = self.public_ip
     }
   }
