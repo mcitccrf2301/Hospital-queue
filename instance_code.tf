@@ -2,7 +2,7 @@ data "template_file" "bootstrap_hospital_queue" {
   template = file("${path.module}/bootstrap_hospital_queue.sh.tpl")
 
   vars = {
-    db_password    = "your_strong_password_here"
+    db_password    = var.DB_PASSWORD
     api_gateway_url = aws_api_gateway_deployment.example.invoke_url
   }
 }
