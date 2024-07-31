@@ -36,8 +36,8 @@ if [ $? -ne 0 ]; then
 fi
 
 # Set environment variables
-DB_PASSWORD="your_strong_password_here"
-API_ENDPOINT="https://your-api-gateway-url"
+DB_PASSWORD="${db_password}"
+API_ENDPOINT="${api_gateway_url}"
 
 echo "DB_PASSWORD=${DB_PASSWORD}" | sudo tee -a /etc/environment
 echo "API_ENDPOINT=${API_ENDPOINT}" | sudo tee -a /etc/environment
