@@ -3,7 +3,7 @@ data "template_file" "bootstrap_hospital_queue" {
 
   vars = {
     db_password    = var.DB_PASSWORD
-    api_gateway_url = aws_api_gateway_deployment.example.invoke_url
+    api_gateway_url = aws_api_gateway_deployment.hospital_queue_api.invoke_url
   }
 }
 
