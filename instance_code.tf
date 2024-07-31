@@ -1,3 +1,12 @@
+data "template_file" "bootstrap_hospital_queue" {
+  template = file("${path.module}/bootstrap_hospital_queue.sh.tpl")
+
+  vars = {
+    db_password    = "your_strong_password_here"
+    api_gateway_url = aws_api_gateway_deployment.example.invoke_url
+  }
+}
+
 resource "aws_instance" "hospital_queue" {
   ami           = var.ami_for_compute
   instance_type = var.compute_type
@@ -11,9 +20,23 @@ resource "aws_instance" "hospital_queue" {
   ]
 
   associate_public_ip_address = true
-  user_data = file("${path.module}/bootstrap_hospital_queue.sh")
+  
+  user_data = data.template_file.bootstrap_hospital_queue.rendered
 
   tags = {
     Name = "HospitalQueueSystem"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /home/ubuntu/hospital_queue/bootstrap_hospital_queue.sh",
+      # Add other setup commands if needed
+    ]
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file("${path.module}/path_to_your_private_key.pem")
+      host        = self.public_ip
+    }
   }
 }
