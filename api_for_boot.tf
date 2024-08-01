@@ -16,12 +16,19 @@ resource "aws_api_gateway_method" "post_hospital" {
   authorization = "NONE"
 }
 
+resource "aws_api_gateway_method" "post_hospital" {
+  rest_api_id   = aws_api_gateway_rest_api.hospital_queue_api.id
+  resource_id   = aws_api_gateway_resource.hospital.id
+  http_method   = "GET"
+  authorization = "NONE"
+}
+
 resource "aws_api_gateway_integration" "post_hospital_integration" {
   rest_api_id             = aws_api_gateway_rest_api.hospital_queue_api.id
   resource_id             = aws_api_gateway_resource.hospital.id
   http_method             = aws_api_gateway_method.post_hospital.http_method
   integration_http_method = "POST"
-  type                    = "HTTP"
+  type                    = "AWS"
   uri                     = "http://${aws_instance.hospital_queue.public_dns}:8000/submit"
 
   request_parameters = {
