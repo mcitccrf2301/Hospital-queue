@@ -29,7 +29,7 @@ resource "aws_instance" "hospital_queue" {
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /home/ubuntu/hospital_queue/bootstrap_hospital_queue.sh.tpl",
+      "chmod +x /home/ubuntu/hospital_queue/bootstrap_hospital_queue.sh",
 
     ]
     connection {
