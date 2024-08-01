@@ -29,7 +29,7 @@ resource "aws_api_gateway_integration" "post_hospital_integration" {
   http_method             = aws_api_gateway_method.post_hospital.http_method
   integration_http_method = "POST"
   type                    = "AWS"
-  uri                     = "http://${aws_instance.hospital_queue.public_dns}:8000/submit"
+  uri                     = insert_lambda_arn
 
   request_parameters = {
     "integration.request.header.Content-Type" = "'application/json'"
