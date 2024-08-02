@@ -2,8 +2,8 @@ data "aws_api_gateway_rest_api" "hospital_queue_api" {
   name = "hospital_queue_api"
 }
 
-resource "aws_api_gateway_deployment" "hospital_queue_api_deployment" {
-  rest_api_id = data.aws_api_gateway_rest_api.hospital_queue_api.id
+resource "aws_api_gateway_deployment" "hospital_queue_api" {
+  rest_api_id = aws_api_gateway_rest_api.hospital_queue_api.id
   stage_name  = "prod"
 }
 
