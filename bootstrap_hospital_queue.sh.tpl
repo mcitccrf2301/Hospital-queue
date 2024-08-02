@@ -40,7 +40,7 @@ DB_PASSWORD="${db_password}"
 API_ENDPOINT="${api_gateway_url}"
 
 echo "DB_PASSWORD=${DB_PASSWORD}" | sudo tee -a /etc/environment
-echo "API_ENDPOINT=${API_ENDPOINT}" | sudo tee -a /etc/environment
+echo "API_ENDPOINT=${api_gateway_url}" | sudo tee -a /etc/environment
 source /etc/environment
 
 # Create Flask application
