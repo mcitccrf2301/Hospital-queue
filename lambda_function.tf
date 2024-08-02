@@ -44,7 +44,7 @@ resource "aws_iam_policy" "lambda_policy" {
           "dynamodb:Query",
         ],
         Effect   = "Allow",
-        Resource = "arn:aws:dynamodb:${var.region}:${data.aws_caller_identity.current.account_id}:table/HospitalQueue",
+        Resource = "arn:aws:dynamodb:${var.aws_region}:${data.aws_caller_identity.current.account_id}:table/HospitalQueue",
       },
     ],
   })
