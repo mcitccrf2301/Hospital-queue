@@ -13,45 +13,43 @@ resource "aws_lambda_function" "hospital_queue" {
   }
 }
 
-resource "aws_iam_role" "lambda_exec_role" {
-  name = "lambda_exec_role"
+resource "aws_iam_role" "lambda_role" {
+  name = "lambda_role"
 
   assume_role_policy = jsonencode({
-    Version = "2012-10-17",
+    Version = "2012-10-17"
     Statement = [
       {
-        Action = "sts:AssumeRole",
-        Effect = "Allow",
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
         Principal = {
-          Service = "lambda.amazonaws.com",
-        },
+          Service = "lambda.amazonaws.com"
+        }
       },
-    ],
+    ]
   })
 }
 
 resource "aws_iam_policy" "lambda_policy" {
   name        = "lambda_policy"
   description = "IAM policy for Lambda to access DynamoDB"
-  
-  policy = jsonencode({
-    Version = "2012-10-17",
+  policy      = jsonencode({
+    Version = "2012-10-17"
     Statement = [
       {
         Action = [
-          "dynamodb:GetItem",
           "dynamodb:PutItem",
-          "dynamodb:Query",
-        ],
-        Effect   = "Allow",
-        Resource = "arn:aws:dynamodb:${var.aws_region}:${data.aws_caller_identity.current.account_id}:table/HospitalQueue",
+          "dynamodb:Query"
+        ]
+        Effect   = "Allow"
+        Resource = "arn:aws:dynamodb:${var.aws_region}:${data.aws_caller_identity.current.account_id}:table/HospitalQueue"
       },
-    ],
+    ]
   })
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_policy_attachment" {
-  role       = aws_iam_role.lambda_exec_role.name
+  role       = aws_iam_role.lambda_role.name
   policy_arn = aws_iam_policy.lambda_policy.arn
 }
 
