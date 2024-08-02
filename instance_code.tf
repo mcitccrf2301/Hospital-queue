@@ -7,6 +7,10 @@ resource "aws_api_gateway_deployment" "hospital_queue_api" {
   stage_name  = "prod"
 }
 
+output "api_gateway_url" {
+  value = aws_api_gateway_deployment.hospital_queue_api.invoke_url
+}
+
 data "template_file" "bootstrap_hospital_queue" {
   template = file("${path.module}/bootstrap_hospital_queue.sh.tpl")
 
