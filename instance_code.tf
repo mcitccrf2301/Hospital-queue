@@ -1,9 +1,17 @@
+data "aws_api_gateway_rest_api" "hospital_queue_api" {
+  name = "hospital_queue_api"
+}
+
+data "aws_api_gateway_deployment" "hospital_queue_api_deployment" {
+  rest_api_id = data.aws_api_gateway_rest_api.hospital_queue_api.id
+  stage_name  = "prod"
+}
+
 data "template_file" "bootstrap_hospital_queue" {
-  template = file("${path.module}/bootstrap_hospital_queue.sh.tpl")
+  template = file("${path.module}/bootstrap_hospital_queue.tpl")
 
   vars = {
-    db_password    = var.DB_PASSWORD
-    api_gateway_url = aws_api_gateway_deployment.hospital_queue_api.invoke_url
+    api_endpoint = data.aws_api_gateway_deployment.hospital_queue_api_deployment.invoke_url
   }
 }
 
@@ -20,7 +28,6 @@ resource "aws_instance" "hospital_queue" {
   ]
 
   associate_public_ip_address = true
-  
   user_data = data.template_file.bootstrap_hospital_queue.rendered
 
   tags = {
@@ -29,8 +36,8 @@ resource "aws_instance" "hospital_queue" {
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /home/ubuntu/hospital_queue/bootstrap_hospital_queue.sh.tpl",
-
+      "chmod +x /home/ubuntu/hospital_queue/bootstrap_hospital_queue.sh",
+      "/home/ubuntu/hospital_queue/bootstrap_hospital_queue.sh"
     ]
     connection {
       type        = "ssh"
