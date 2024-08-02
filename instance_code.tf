@@ -1,4 +1,4 @@
-data "aws_api_gateway_rest_api" "hospital_queue_api" {
+resource "aws_api_gateway_rest_api" "hospital_queue_api" {
   name = "hospital_queue_api"
 }
 
@@ -15,7 +15,7 @@ data "template_file" "bootstrap_hospital_queue" {
   template = file("${path.module}/bootstrap_hospital_queue.sh.tpl")
 
   vars = {
-    api_endpoint = data.aws_api_gateway_deployment.hospital_queue_api_deployment.invoke_url
+    api_endpoint = aws_api_gateway_deployment.hospital_queue_api.invoke_url
   }
 }
 
@@ -40,8 +40,8 @@ resource "aws_instance" "hospital_queue" {
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /home/ubuntu/hospital_queue/bootstrap_hospital_queue.sh.tpl",
-      "/home/ubuntu/hospital_queue/bootstrap_hospital_queue.sh.tpl"
+      "chmod +x /home/ubuntu/hospital_queue/bootstrap_hospital_queue.sh",
+      "/home/ubuntu/hospital_queue/bootstrap_hospital_queue.sh"
     ]
     connection {
       type        = "ssh"
