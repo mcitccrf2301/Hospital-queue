@@ -11,7 +11,6 @@ variable "DB_PASSWORD"{
 }
 
 variable "API_ENDPOINT"{
-    type = string
 }
 
 variable "aws_region" {
