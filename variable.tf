@@ -10,9 +10,6 @@ variable "DB_PASSWORD"{
     type = string
 }
 
-variable "API_ENDPOINT"{
-}
-
 variable "aws_region" {
     description = "Region in which AWS Resources to be created"
     type = string
