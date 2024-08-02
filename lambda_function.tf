@@ -3,8 +3,9 @@ resource "aws_lambda_function" "hospital_queue" {
   role          = aws_iam_role.lambda_role.arn
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.8"
-  filename      = "lambda_function_payload.zip"
-  source_code_hash = filebase64sha256("lambda_function_payload.zip")
+
+  s3_bucket = "lambda-function-for-capstone"
+  s3_key    = "lambda_function.zip.zip"
 
   environment {
     variables = {
