@@ -6,7 +6,7 @@ variable "aws_secret_access_key"{
     type = string
 }
 
-variable "DB_PASSWORD"{
+variable "db_password"{
     type = string
 }
 
