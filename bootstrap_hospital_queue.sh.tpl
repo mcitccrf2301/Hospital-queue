@@ -56,7 +56,7 @@ app = Flask(__name__)
 db_config = {
     'host': 'localhost',
     'user': 'hospital_user',
-    'password': os.environ.get('DB_PASSWORD'),
+    'password': os.environ.get('db_password'),
     'db': 'hospital_queue',
     'charset': 'utf8mb4',
     'cursorclass': pymysql.cursors.DictCursor
@@ -266,7 +266,7 @@ User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/hospital_queue
 Environment="PATH=/home/ubuntu/hospital_queue/venv/bin"
-Environment="DB_PASSWORD=${DB_PASSWORD}"
+Environment="DB_PASSWORD=${db_password}"
 Environment="API_ENDPOINT=${API_ENDPOINT}"
 ExecStart=/home/ubuntu/hospital_queue/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 app:app
 
