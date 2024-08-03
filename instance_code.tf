@@ -2,7 +2,8 @@ resource "aws_api_gateway_deployment" "hospital_queue_api" {
   rest_api_id = aws_api_gateway_rest_api.hospital_queue_api.id
   stage_name  = "prod"
   depends_on = [
-    aws_api_gateway_integration.lambda_integration,
+    aws_api_gateway_integration.submit_integration,
+    aws_api_gateway_integration.check_queues_integration,
   ]
 }
 
