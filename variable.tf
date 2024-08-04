@@ -19,7 +19,6 @@ variable "hospital" {
 variable "data" {
   description = "Data variable"
   type        = string
-  default     = not sur how to fix this issue
 }
 
 variable "aws_region" {
