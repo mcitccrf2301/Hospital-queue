@@ -18,8 +18,6 @@ data "template_file" "bootstrap_hospital_queue" {
     db_password    = var.db_password
     api_endpoint   = aws_api_gateway_deployment.hospital_queue_api.invoke_url
     api_gateway_url = aws_api_gateway_rest_api.hospital_queue_api.execution_arn
-    hospital       = var.hospital
-    data            = var.data 
   }
 }
 
