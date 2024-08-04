@@ -19,6 +19,7 @@ variable "hospital" {
 variable "data" {
   description = "Data variable"
   type        = string
+  default     = ""
 }
 
 variable "aws_region" {
