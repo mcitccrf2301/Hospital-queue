@@ -10,6 +10,12 @@ variable "db_password"{
     type = string
 }
 
+variable "hospital" {
+  description = "Name of the hospital"
+  type        = string
+  default     = "Hospital"
+}
+
 variable "aws_region" {
     description = "Region in which AWS Resources to be created"
     type = string
