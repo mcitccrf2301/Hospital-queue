@@ -19,7 +19,23 @@ variable "hospital" {
 variable "data" {
   description = "Data variable"
   type        = string
-  default     = ""
+  default     = "request.form.to_dict()
+    
+    # Store data in MySQL
+    with get_db_connection() as connection:
+        with connection.cursor() as cursor:
+            sql = """INSERT INTO patients 
+                     (name, last_name, dob, hospital, symptoms) 
+                     VALUES (%s, %s, %s, %s, %s)"""
+            cursor.execute(sql, (data['name'], data['lastName'], data['dob'], 
+                                 data['hospital'], data['symptoms']))
+        connection.commit()
+    
+    # Make API call to Lambda function via API Gateway
+    response = requests.post(f"{API_ENDPOINT}/submit", json=data)
+    result = response.json()
+    
+    return render_template('result.html', result=result)"
 }
 
 variable "aws_region" {
