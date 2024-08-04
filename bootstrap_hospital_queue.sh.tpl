@@ -38,13 +38,9 @@ fi
 # Set environment variables
 DB_PASSWORD="${db_password}"
 API_ENDPOINT="${api_endpoint}"
-HOSPITAL="${hospital}"
-DATA="${data}"
 
 echo "DB_PASSWORD=${db_password}" | sudo tee -a /etc/environment
 echo "API_ENDPOINT=${api_gateway_url}" | sudo tee -a /etc/environment
-echo "HOSPITAL=${hospital}" | sudo tee -a /etc/environment
-echo "DATA=${data}" | sudo tee -a /etc/environment
 source /etc/environment
 
 # Create Flask application
