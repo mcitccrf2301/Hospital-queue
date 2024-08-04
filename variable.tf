@@ -11,7 +11,9 @@ variable "db_password"{
 }
 
 variable "hospital" {
-  type = string
+  description = "Name of the hospital"
+  type        = string
+  default     = "Hospital A"
 }
 
 variable "aws_region" {
