@@ -10,6 +10,7 @@ resource "aws_lambda_function" "hospital_queue" {
   environment {
     variables = {
       TABLE_NAME = "HospitalQueue"
+      DYNAMODB_TABLE_NAME = aws_dynamodb_table.hospital_queue.name
     }
   }
 }
