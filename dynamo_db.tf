@@ -1,16 +1,22 @@
 resource "aws_dynamodb_table" "hospital_queue" {
-  name         = "hospital_queue"
+  name         = "HospitalQueue"
   billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "patient_id"
+  hash_key     = "UserId"
 
   attribute {
-    name = "patient_id"
+    name = "UserId"
     type = "S"
   }
 
   attribute {
-    name = "hospital_id"
+    name = "Hospital"
     type = "S"
+  }
+
+  global_secondary_index {
+    name            = "HospitalIndex"
+    hash_key        = "Hospital"
+    projection_type = "ALL"
   }
 
   tags = {
