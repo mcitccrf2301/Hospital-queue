@@ -61,3 +61,23 @@ resource "aws_lambda_permission" "api_gateway_invoke" {
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_api_gateway_rest_api.hospital_queue_api.execution_arn}/*/*"
 }
+
+resource "aws_iam_role_policy" "lambda_dynamodb_policy" {
+  role = aws_iam_role.lambda_exec_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = [
+          "dynamodb:PutItem",
+          "dynamodb:GetItem",
+          "dynamodb:UpdateItem",
+          "dynamodb:DeleteItem"
+        ],
+        Effect   = "Allow",
+        Resource = aws_dynamodb_table.hospital_queue.arn
+      }
+    ]
+  })
+}
